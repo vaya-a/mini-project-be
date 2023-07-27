@@ -20,7 +20,8 @@ const validateAndComparePasswords = async (currentPassword, newPassword, confirm
     validatePassword(newPassword),
     validatePassword(confirmPassword),
   ]
-
+  
+  
   if (validations.some((v) => v.error)) {
     return { isValid: false, isSame: false, errors: { currentPassword: validations[0].message, newPassword: validations[1].message, confirmPassword: validations[2].message } }
   }
@@ -50,9 +51,9 @@ const changePassword = async (req, res) => {
 
     const { isValid, isSame, errors } = await validateAndComparePasswords(currentPassword, newPassword, confirmPassword, checkLogin.password)
 
-    if (!isValid) return res.status(404).json({ message: "Error changing password", errors })
+    if (!isValid) return res.status(404).json({ message: "Incorrect password" })
 
-    if (isSame) return res.status(404).json({ message: "Please put another password, the password input is the same as your previous password", errors })
+    if (isSame) return res.status(404).json({ message: "There's no change. You put the same passwords"})
 
     if (newPassword !== confirmPassword) {
       return res.status(400).json({ message: "Passwords not match" })
@@ -62,7 +63,9 @@ const changePassword = async (req, res) => {
 
     return res.status(200).json({ message: "Password has successfully changed" })
   } catch (err) {
+    console.log(err)
     return res.status(500).json({ message: err.message })
+    
   }
 }
 
