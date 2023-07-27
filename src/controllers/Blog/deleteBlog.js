@@ -14,7 +14,7 @@ const deleteBlog = async (req, res) => {
             
             if (!blogToDelete) return res.status(404).json({ error: 'Blog not found.' })
             if (!deleteConfirmation || deleteConfirmation !== true)
-            return res.status(400).json({ error: 'Please confirm to delete first.' })
+            return res.status(400).json({ error: 'Please confirm first to delete blog.' })
             if (blogToDelete.user_id !== user_id)
             return res.status(403).json({ error: 'Unauthorized to delete the blog.' })
             
