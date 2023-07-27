@@ -6,6 +6,7 @@ const controllers = {
   keepLogin: "keepLogin",
   changeUserName: "changeUsername",
   changePassword: "changePassword",
+  reqChangeEmail: "reqChangeEmail",
   changeEmail: "changeEmail",
   changePhone: "changePhone",
   changeProfilePicture: "changeProfilePicture",

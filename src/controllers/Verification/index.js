@@ -9,7 +9,6 @@ const VerificationController = {
     try {
       await db.sequelize.transaction(async (t) => {
         const { token } = req.params
-        console.log(token)
         let decodedToken = jwt.verify(token, process.env.JWT_KEY)
         const isUser = await user.findOne({attribute: decodedToken.email})
         if (!isUser) {

@@ -52,7 +52,7 @@ const handleRegistration = async (req, res) => {
       const token = jwt.sign({ email: email }, process.env.JWT_KEY, { expiresIn: '1h' })
       await sendActivationEmail(email, token, { transaction: t })
 
-      return res.status(200).json({ message: "Register success", data: result })
+      return res.status(200).json({ message: "Register success. Please check your email to verify your account", data: result })
     })
   } catch (err) {
     return res.status(500).json({ message: err.message });
